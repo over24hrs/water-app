@@ -851,32 +851,6 @@ async function api(action, params) {
     calculate();
   } catch(e) { console.error('getMeterData error:', e); }
 }
-      var before = (res.before !== "" && res.before != null) ? String(res.before) : "";
-      var after  = (res.after  !== "" && res.after  != null) ? String(res.after)  : "";
-      document.getElementById("meterBefore").value = before;
-      var ae = document.getElementById("meterAfter");
-      var lb = document.getElementById("labelAfter");
-
-      if(res.found && res.status === "Unpaid" && after === ""){
-        ae.value = ""; ae.className = 'form-input pending-af'; ae.placeholder = "กรอกตอนเก็บเงิน ★";
-        lb.textContent = "อ่านหลัง ★ (รอกรอก)"; lb.className = "lbl accent-orange";
-        setStatusHint('unpaid-noafter','<i class="fa-solid fa-circle-exclamation"></i> บันทึกเลขก่อนแล้ว — กรอกเลขอ่านหลัง แล้วกด "ค้างจ่าย" หรือ "จ่ายเงิน"');
-      } else if(res.found && res.status === "Unpaid" && after !== ""){
-        ae.value = after; ae.className = 'form-input unpaid-hl'; ae.placeholder = "ระบุเลข";
-        lb.textContent = "อ่านหลัง (แก้ไขได้)"; lb.className = "lbl accent-yellow";
-        setStatusHint('unpaid','<i class="fa-solid fa-clock"></i> ค้างจ่ายอยู่ — กด "ค้างจ่าย" เพื่ออัปเดต หรือ "จ่ายเงิน" เพื่อยืนยันชำระ');
-      } else if(res.found && res.status === "Paid"){
-        ae.value = after; ae.className = 'form-input'; ae.placeholder = "ระบุเลข";
-        lb.textContent = "อ่านหลัง (แก้ไขได้)"; lb.className = "lbl accent-green";
-        setStatusHint('paid','<i class="fa-solid fa-circle-check"></i> จ่ายแล้ว — กำลังแสดงในโหมดแก้ไข');
-      } else {
-        ae.value = ""; ae.className = 'form-input new-entry'; ae.placeholder = "กรอกตอนเก็บเงิน";
-        lb.textContent = "อ่านหลัง (ถ้ามี)"; lb.className = "lbl accent-blue";
-        setStatusHint('new','<i class="fa-solid fa-plus-circle"></i> รายการใหม่เดือนนี้ — กรอกเฉพาะเลขก่อนก็กด "ค้างจ่าย" ได้ หรือกรอกครบแล้วกด "จ่ายเงิน"');
-      }
-      calculate();
-    }).getMeterData(h, y, m);
-  }
 
   function setStatusHint(type, html){
     var el = document.getElementById("statusHint");
