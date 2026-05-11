@@ -661,11 +661,15 @@
 // API Helper — แทน google.script.run
 // ══════════════════════════════════════════
 async function api(action, params) {
-  const res = await fetch(GAS_URL, {
-    method: 'POST',
-    redirect: 'follow',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ action, params })
+  const url = new URL(GAS_URL);
+  url.searchParams.set('action', action);
+  if (params) {
+    url.searchParams.set('params', JSON.stringify(params));
+  }
+  
+  const res = await fetch(url.toString(), {
+    method: 'GET',
+    redirect: 'follow'
   });
   const json = await res.json();
   if (!json.success) throw new Error(json.error);
