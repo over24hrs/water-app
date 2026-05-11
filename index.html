@@ -824,20 +824,28 @@ async function api(action, params) {
       var lb = document.getElementById("labelAfter");
 
       if(res.found && res.status === "Unpaid" && after === ""){
-        ae.value = ""; ae.className = 'form-input pending-af'; ae.placeholder = "กรอกตอนเก็บเงิน ★";
-        lb.textContent = "อ่านหลัง ★ (รอกรอก)"; lb.className = "lbl accent-orange";
+        ae.value = ""; ae.className = 'form-input pending-af'; 
+        ae.placeholder = "กรอกตอนเก็บเงิน ★";
+        lb.textContent = "อ่านหลัง ★ (รอกรอก)"; 
+        lb.className = "lbl accent-orange";
         setStatusHint('unpaid-noafter','<i class="fa-solid fa-circle-exclamation"></i> บันทึกเลขก่อนแล้ว');
       } else if(res.found && res.status === "Unpaid" && after !== ""){
-        ae.value = after; ae.className = 'form-input unpaid-hl'; ae.placeholder = "ระบุเลข";
-        lb.textContent = "อ่านหลัง (แก้ไขได้)"; lb.className = "lbl accent-yellow";
+        ae.value = after; ae.className = 'form-input unpaid-hl'; 
+        ae.placeholder = "ระบุเลข";
+        lb.textContent = "อ่านหลัง (แก้ไขได้)"; 
+        lb.className = "lbl accent-yellow";
         setStatusHint('unpaid','<i class="fa-solid fa-clock"></i> ค้างจ่ายอยู่');
       } else if(res.found && res.status === "Paid"){
-        ae.value = after; ae.className = 'form-input'; ae.placeholder = "ระบุเลข";
-        lb.textContent = "อ่านหลัง (แก้ไขได้)"; lb.className = "lbl accent-green";
+        ae.value = after; ae.className = 'form-input'; 
+        ae.placeholder = "ระบุเลข";
+        lb.textContent = "อ่านหลัง (แก้ไขได้)"; 
+        lb.className = "lbl accent-green";
         setStatusHint('paid','<i class="fa-solid fa-circle-check"></i> จ่ายแล้ว');
       } else {
-        ae.value = ""; ae.className = 'form-input new-entry'; ae.placeholder = "กรอกตอนเก็บเงิน";
-        lb.textContent = "อ่านหลัง (ถ้ามี)"; lb.className = "lbl accent-blue";
+        ae.value = ""; ae.className = 'form-input new-entry'; 
+        ae.placeholder = "กรอกตอนเก็บเงิน";
+        lb.textContent = "อ่านหลัง (ถ้ามี)"; 
+        lb.className = "lbl accent-blue";
         setStatusHint('new','<i class="fa-solid fa-plus-circle"></i> รายการใหม่เดือนนี้');
       }
       calculate();
